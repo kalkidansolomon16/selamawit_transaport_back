@@ -18,4 +18,12 @@ class UserController extends Controller
         ]);
         
     }
+    public function count()
+    {
+        $userCount = User::count();
+        return response()->json([
+            'count' => $userCount,
+            'message' => 'User count retrieved successfully'
+        ]);
+    }
 }
