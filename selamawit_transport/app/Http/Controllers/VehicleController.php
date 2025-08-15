@@ -15,11 +15,13 @@ use Illuminate\Support\Facades\Validator;
 class VehicleController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
+        $perPage = $request->get('per_page',5);
+        $vehicles = Vehicle::paginate($perPage);
      
         return response()->json([
-            'vehicles' => Vehicle::all(),
+            'vehicles' =>$vehicles,
             'message'=>'Success'
         ]);
         

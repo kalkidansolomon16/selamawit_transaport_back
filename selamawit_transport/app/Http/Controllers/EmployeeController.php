@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Validator;
 class EmployeeController extends Controller
 {
    
-    public function index()
+    public function index(Request $request)
     {
-     
+     $perPage = $request->get('per_page',5);
+     $vehicle = Employee::paginate($perPage);
         return response()->json([
-            'employees' => Employee::all(),
+            'employees' =>$vehicle,
             'message'=>'Success'
         ]);
         
